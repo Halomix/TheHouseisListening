@@ -199,7 +199,13 @@ func _start_active_threat(mode: String) -> void:
 	if state != null:
 		if state.has_method("set_threat_state"):
 			state.set_threat_state("active")
-		if state.has_method("set_objective"):
+		if state.has_method("set_objective_deceptive"):
+			var truth := "Hide until the house stops searching." if mode == "initial" else "Hide again. It learned your route."
+			var lie: String = truth
+			if memory != null and memory.has_method("get_objective_deception"):
+				lie = memory.get_objective_deception(truth)
+			state.set_objective_deceptive(truth, lie)
+		elif state.has_method("set_objective"):
 			if mode == "initial":
 				state.set_objective("Hide until the house stops searching.")
 			else:
@@ -306,7 +312,13 @@ func _resolve_active_threat() -> void:
 	if state != null:
 		if state.has_method("set_threat_state"):
 			state.set_threat_state("warning")
-		if state.has_method("set_objective"):
+		if state.has_method("set_objective_deceptive"):
+			var truth := "Get to the exit before it circles back."
+			var lie: String = truth
+			if memory != null and memory.has_method("get_objective_deception"):
+				lie = memory.get_objective_deception(truth)
+			state.set_objective_deceptive(truth, lie)
+		elif state.has_method("set_objective"):
 			state.set_objective("Get to the exit before it circles back.")
 		if state.has_method("set_presence_result"):
 			state.set_presence_result(_survival_grade)
@@ -323,8 +335,13 @@ func _resolve_active_threat() -> void:
 	if should_mark:
 		if memory != null and memory.has_method("mark_player"):
 			memory.mark_player("The house marked the place you trusted.", 24.0)
-		if state != null and state.has_method("set_objective"):
-			state.set_objective("Move. It learned your hiding place.")
+		if state != null:
+			if state.has_method("set_objective_deceptive") and memory != null and memory.has_method("get_objective_deception"):
+				var truth := "Move. It learned your hiding place."
+				var lie: String = memory.get_objective_deception(truth)
+				state.set_objective_deceptive(truth, lie)
+			elif state.has_method("set_objective"):
+				state.set_objective("Move. It learned your hiding place.")
 
 	var hud := get_tree().get_first_node_in_group("hud")
 	if hud != null and hud.has_method("flash_message"):
