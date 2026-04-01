@@ -56,3 +56,8 @@ If a true unattended wake-up loop, Discord reporting path, or GitHub PR path can
 - `KNOWN_ISSUES.md`
 
 Do not leave that dependency implied.
+
+Current external handoff requirement:
+
+- Connect this local git repository to the real GitHub remote, push `codex/bootstrap-autonomy`, and open a PR.
+- Add a Discord webhook or connector if you want automated run summaries posted outside GitHub.

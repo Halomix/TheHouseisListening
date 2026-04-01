@@ -2,8 +2,8 @@
 
 ## Repository setup
 
-- This snapshot did not include a visible Git root when the bootstrap work started, so PR creation and branch publishing may still require connecting the repo to a real remote.
-- The repository does not currently expose a Discord connector in this environment, so Discord status updates still need an external webhook or manual reporting path.
+- This snapshot did not include a visible Git root when the bootstrap work started, so the repo still needs a real GitHub remote before Codex can push `codex/bootstrap-autonomy` and open a PR.
+- The repository does not currently expose a Discord connector in this environment, so automated Discord status updates still need an external webhook or connector setup.
 
 ## Validation
 
