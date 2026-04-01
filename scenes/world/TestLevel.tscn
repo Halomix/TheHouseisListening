@@ -558,7 +558,7 @@ material_override = SubResource("Mat_wood")
 transform = Transform3D(0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0, 1, 5.35, 0.98, -4.35)
 script = ExtResource("5_note")
 note_title = "A note on the entry table"
-note_body = "Kill the room before you open the hall.
+note_body = "Mara, log this before you touch the hall.
 
 When the power comes back, do not trust the first place you look.
 

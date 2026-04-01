@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgwmi6y666ol5"]
+[gd_scene load_steps=11 format=3 uid="uid://cgwmi6y666ol5"]
 
 [ext_resource type="PackedScene" uid="uid://bec38lqp4otmq" path="res://scenes/world/TestLevel.tscn" id="1_0x6s7"]
 [ext_resource type="Script" path="res://scripts/systems/bootstrap.gd" id="2_ub7pq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/systems/threat_director.gd" id="7_th001"]
 [ext_resource type="Script" path="res://scripts/systems/house_memory.gd" id="8_hm001"]
 [ext_resource type="Script" path="res://scripts/systems/house_director.gd" id="9_hd001"]
+[ext_resource type="Script" path="res://scripts/systems/archive_log.gd" id="10_ar001"]
 
 [node name="Main" type="Node"]
 script = ExtResource("2_ub7pq")
@@ -32,6 +33,9 @@ script = ExtResource("7_th001")
 
 [node name="HouseMemory" type="Node" parent="."]
 script = ExtResource("8_hm001")
+
+[node name="ArchiveLog" type="Node" parent="."]
+script = ExtResource("10_ar001")
 
 [node name="HouseDirector" type="Node" parent="."]
 script = ExtResource("9_hd001")

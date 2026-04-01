@@ -18,6 +18,9 @@ func interact(_player: Node) -> void:
 
     if not _has_been_read:
         _has_been_read = true
+        var archive_log := get_tree().get_first_node_in_group("archive_log")
+        if archive_log != null and archive_log.has_method("record_entry"):
+            archive_log.record_entry(note_title, note_body, "note", name)
         var tension := get_tree().get_first_node_in_group("tension_manager")
         if tension != null and tension.has_method("add_tension"):
             tension.add_tension(first_read_tension, "note_read")
