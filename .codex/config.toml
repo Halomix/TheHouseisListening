@@ -1,0 +1,14 @@
+# Project-local Codex defaults for The House Is Listening.
+# Keep this file small and explicit so future runs know which defaults
+# belong to this repository rather than the global Codex profile.
+
+model = "gpt-5.4-mini"
+model_reasoning_effort = "medium"
+
+[windows]
+sandbox = "unelevated"
+
+# Repo-specific notes:
+# - The current snapshot does not expose a Discord connector.
+# - GitHub automation is available when the repository is connected to a
+#   real remote and PR metadata is available.

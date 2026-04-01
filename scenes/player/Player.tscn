@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba4v8po6m2ad8"]
+
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_0b4ud"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o8nba"]
+radius = 0.35
+height = 1.8
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wr5hl"]
+radius = 0.35
+height = 1.8
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_0b4ud")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_o8nba")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+current = true
+
+[node name="InteractionRay" type="RayCast3D" parent="Head"]
+target_position = Vector3(0, 0, -4.5)
+enabled = true
+
+[node name="Flashlight" type="SpotLight3D" parent="Head"]
+light_energy = 1.7
+light_volumetric_fog_energy = 0.05
+spot_range = 22.0
+spot_angle = 38.0
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_wr5hl")

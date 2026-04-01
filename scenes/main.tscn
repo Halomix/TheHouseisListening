@@ -1,0 +1,37 @@
+[gd_scene load_steps=10 format=3 uid="uid://cgwmi6y666ol5"]
+
+[ext_resource type="PackedScene" uid="uid://bec38lqp4otmq" path="res://scenes/world/TestLevel.tscn" id="1_0x6s7"]
+[ext_resource type="Script" path="res://scripts/systems/bootstrap.gd" id="2_ub7pq"]
+[ext_resource type="Script" path="res://scripts/ui/hud.gd" id="3_hud01"]
+[ext_resource type="Script" path="res://scripts/systems/tension_manager.gd" id="4_ten01"]
+[ext_resource type="Script" path="res://scripts/systems/game_state.gd" id="5_gs001"]
+[ext_resource type="Script" path="res://scripts/systems/presence_director.gd" id="6_pr001"]
+[ext_resource type="Script" path="res://scripts/systems/threat_director.gd" id="7_th001"]
+[ext_resource type="Script" path="res://scripts/systems/house_memory.gd" id="8_hm001"]
+[ext_resource type="Script" path="res://scripts/systems/house_director.gd" id="9_hd001"]
+
+[node name="Main" type="Node"]
+script = ExtResource("2_ub7pq")
+
+[node name="TestLevel" parent="." instance=ExtResource("1_0x6s7")]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("3_hud01")
+
+[node name="GameState" type="Node" parent="."]
+script = ExtResource("5_gs001")
+
+[node name="TensionManager" type="Node" parent="."]
+script = ExtResource("4_ten01")
+
+[node name="PresenceDirector" type="Node" parent="."]
+script = ExtResource("6_pr001")
+
+[node name="ThreatDirector" type="Node" parent="."]
+script = ExtResource("7_th001")
+
+[node name="HouseMemory" type="Node" parent="."]
+script = ExtResource("8_hm001")
+
+[node name="HouseDirector" type="Node" parent="."]
+script = ExtResource("9_hd001")
