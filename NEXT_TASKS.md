@@ -6,10 +6,10 @@
 - Why: this is the fastest way to catch broken scenes, resource references, or startup regressions before they reach a player.
 - Needs: a CI runner or action with a working Godot CLI.
 
-## 2. Turn Patch 8 into the next focused gameplay slice
+## 2. Turn Patch 9 into the next focused gameplay slice
 
-- Goal: clearer recap, objective deception, and more room mutation.
-- Why: the current prototype already has a strong pressure loop, and the next best value is making the house feel smarter and less predictable.
+- Goal: more room mutation, a stronger post-hunt loop, and additional ways for the house to misdirect the player.
+- Why: Patch 8 sharpened the ending and the objective language, and the next best value is pushing that same idea deeper into the run.
 
 ## 3. Add the first durable playtest note after a real run
 

@@ -201,6 +201,30 @@ func get_recap_lines() -> PackedStringArray:
 		lines.append("Keys and exits became the obsession.")
 	return lines
 
+func get_objective_deception(real_objective: String) -> String:
+	var normalized := real_objective.strip_edges().to_lower()
+	var dominant_room := get_dominant_room()
+	var safest_room := get_safest_room()
+	if player_marked:
+		if not safest_room.is_empty():
+			return "Go back to the %s." % safest_room.capitalize()
+		return "Go where it marked you."
+	if normalized.begins_with("hide"):
+		return "The hall sounds empty. Check it."
+	if normalized.find("exit") != -1 or normalized.begins_with("leave"):
+		if not dominant_room.is_empty():
+			return "The %s keeps calling you." % dominant_room.capitalize()
+		return "The hallway is not as empty as it looks."
+	if normalized.find("breaker") != -1:
+		if not dominant_room.is_empty():
+			return "The %s still matters." % dominant_room.capitalize()
+		return "The dark room is not the only answer."
+	if normalized.find("door") != -1:
+		return "The door is not the only way out."
+	if not dominant_room.is_empty():
+		return "Return to the %s." % dominant_room.capitalize()
+	return "Listen before you move."
+
 func _update_obsession() -> void:
 	var next_theme := obsession_theme
 	var dominant_room := get_dominant_room()

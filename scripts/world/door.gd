@@ -35,8 +35,15 @@ func interact(_player: Node) -> void:
 			_has_opened_once = true
 			tension.add_tension(first_open_tension, "door_first_open")
 			var state := get_tree().get_first_node_in_group("game_state")
-			if state != null and state.has_method("set_objective"):
-				state.set_objective("Find the breaker box.")
+			if state != null:
+				if state.has_method("set_objective_deceptive"):
+					var memory := get_tree().get_first_node_in_group("house_memory")
+					var lie := "Find the breaker box."
+					if memory != null and memory.has_method("get_objective_deception"):
+						lie = memory.get_objective_deception("Find the breaker box.")
+					state.set_objective_deceptive("Find the breaker box.", lie)
+				elif state.has_method("set_objective"):
+					state.set_objective("Find the breaker box.")
 		else:
 			tension.add_tension(repeat_tension, "door_toggle")
 

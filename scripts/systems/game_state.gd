@@ -13,6 +13,7 @@ signal marked_changed(marked: bool, reason: String)
 @export var starting_objective: String = "Read the note."
 
 var objective_text: String = ""
+var objective_truth_text: String = ""
 var inventory: Dictionary = {}
 var power_restored: bool = false
 var has_won: bool = false
@@ -48,10 +49,25 @@ func _on_memory_marked(marked: bool, reason: String) -> void:
 
 func set_objective(text: String) -> void:
 	objective_text = text
+	objective_truth_text = text
 	objective_changed.emit(objective_text)
 	var hud := get_tree().get_first_node_in_group("hud")
 	if hud != null and hud.has_method("set_objective"):
 		hud.set_objective(objective_text)
+
+func set_objective_deceptive(truth_text: String, lie_text: String) -> void:
+	objective_truth_text = truth_text
+	objective_text = lie_text if not lie_text.is_empty() else truth_text
+	objective_changed.emit(objective_text)
+	var hud := get_tree().get_first_node_in_group("hud")
+	if hud != null and hud.has_method("set_objective"):
+		hud.set_objective(objective_text)
+
+func get_objective_text() -> String:
+	return objective_text
+
+func get_true_objective_text() -> String:
+	return objective_truth_text if not objective_truth_text.is_empty() else objective_text
 
 func add_item(item_id: String, display_name: String) -> void:
 	inventory[item_id] = display_name
@@ -138,9 +154,18 @@ func win_game() -> void:
 		return
 	has_won = true
 	game_won.emit()
+	var recap_lines: PackedStringArray = []
+	var memory := get_tree().get_first_node_in_group("house_memory")
+	if memory != null and memory.has_method("get_recap_lines"):
+		recap_lines = memory.get_recap_lines()
+	var end_text := "You made it out.\nPrototype slice complete."
+	if not recap_lines.is_empty():
+		end_text += "\n\nThe house remembers:"
+		for line in recap_lines:
+			end_text += "\n- %s" % line
 	var hud := get_tree().get_first_node_in_group("hud")
 	if hud != null and hud.has_method("show_end_screen"):
-		hud.show_end_screen("You made it out.\nPrototype slice complete.")
+		hud.show_end_screen(end_text)
 
 func _inventory_text() -> String:
 	if inventory.is_empty():
