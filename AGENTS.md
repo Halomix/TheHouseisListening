@@ -61,3 +61,8 @@ Current external handoff requirement:
 
 - Connect this local git repository to the real GitHub remote, push `codex/bootstrap-autonomy`, and open a PR.
 - Add a Discord webhook or connector if you want automated run summaries posted outside GitHub.
+
+Current PR blocker:
+
+- `gh` is installed but not authenticated in this environment, and no `GH_TOKEN` or `GITHUB_TOKEN` is available.
+- To finish PR creation, run `gh auth login` or provide a token, then create the PR from `codex/patch-8-recap-misdirection` into `main`.

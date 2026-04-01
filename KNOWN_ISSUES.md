@@ -4,6 +4,7 @@
 
 - This snapshot did not include a visible Git root when the bootstrap work started, so the repo still needs a real GitHub remote before Codex can push `codex/bootstrap-autonomy` and open a PR.
 - The repository does not currently expose a Discord connector in this environment, so automated Discord status updates still need an external webhook or connector setup.
+- `gh` is present but not authenticated here, and there is no `GH_TOKEN` or `GITHUB_TOKEN`, so PR creation is blocked until GitHub auth is supplied.
 
 ## Validation
 
