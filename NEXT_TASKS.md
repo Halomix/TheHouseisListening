@@ -7,7 +7,7 @@
 
 ## 2. Watch the new Godot smoke test in CI
 
-- Goal: confirm the workflow stays green on unrelated PRs and actually fails on real startup regressions.
+- Goal: add a real Godot headless smoke test to CI, then confirm the workflow stays green on unrelated PRs and actually fails on real startup regressions.
 - Why: a smoke test only pays off if the repo keeps paying attention to it after launch.
 
 ## 3. Add the first durable playtest note after a real run
