@@ -27,6 +27,7 @@ This repository contains the Godot horror game **The House Is Listening**.
 - Keep `CURRENT_MILESTONE.md`, `NEXT_TASKS.md`, and `KNOWN_ISSUES.md` current.
 - Use `PLAYTEST_NOTES.md` for any manual observations, even if they are brief.
 - Keep PRs small and coherent.
+- Use `DISCORD_WEBHOOK_URL` as the canonical GitHub Actions webhook secret name for Discord notifications.
 
 ## Useful tools and MCPs
 
@@ -59,5 +60,5 @@ Do not leave that dependency implied.
 
 Current external handoff requirement:
 
-- Connect this local git repository to the real GitHub remote, push `codex/bootstrap-autonomy`, and open a PR.
-- Add a Discord webhook or connector if you want automated run summaries posted outside GitHub.
+- Keep the Discord webhook secret named `DISCORD_WEBHOOK_URL` in GitHub repo settings so the PR notification workflow can post successfully.
+- If the repository ever switches webhook names, update the workflow and these instructions together.

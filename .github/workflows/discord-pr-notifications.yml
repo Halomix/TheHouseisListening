@@ -1,0 +1,72 @@
+name: Discord PR Notifications
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - closed
+
+jobs:
+  notify-discord:
+    name: Notify Discord
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord notification
+        uses: actions/github-script@v7
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        with:
+          script: |
+            const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
+            if (!webhookUrl) {
+              core.notice('DISCORD_WEBHOOK_URL is not set; skipping Discord notification.');
+              return;
+            }
+
+            const pr = context.payload.pull_request;
+            const action = context.payload.action;
+            const eventLabel =
+              action === 'closed'
+                ? (pr.merged ? 'MERGED' : 'CLOSED')
+                : action === 'opened'
+                  ? 'OPENED'
+                  : 'UPDATED';
+
+            const colors = {
+              OPENED: 0x58a6ff,
+              UPDATED: 0xf1e05a,
+              MERGED: 0x3fb950,
+              CLOSED: 0xf85149,
+            };
+
+            const repoName = `${context.repo.owner}/${context.repo.repo}`;
+            const message = {
+              content: `**${eventLabel}** PR #${pr.number}: ${pr.title}`,
+              embeds: [{
+                color: colors[eventLabel],
+                fields: [
+                  { name: 'Repository', value: repoName, inline: true },
+                  { name: 'PR Number', value: `#${pr.number}`, inline: true },
+                  { name: 'Event', value: eventLabel, inline: true },
+                  { name: 'Source branch', value: pr.head.ref, inline: true },
+                  { name: 'Target branch', value: pr.base.ref, inline: true },
+                  { name: 'Author', value: pr.user.login, inline: true },
+                  { name: 'PR URL', value: pr.html_url, inline: false },
+                ],
+                footer: { text: repoName },
+                timestamp: new Date().toISOString(),
+              }],
+              allowed_mentions: { parse: [] },
+            };
+
+            const response = await fetch(webhookUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(message),
+            });
+
+            if (!response.ok) {
+              const text = await response.text();
+              core.setFailed(`Discord webhook failed: ${response.status} ${text}`);
+            }

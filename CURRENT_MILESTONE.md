@@ -2,23 +2,22 @@
 
 ## Milestone
 
-Bootstrap the repository for unattended Codex execution.
+Patch 10: GitHub Actions Discord notifications.
 
 ## Why this matters
 
-The project needs durable instructions, validation, and next-step memory so each wake-up can continue without rediscovering the same context.
+The project needs a lightweight notification path so PR activity posts cleanly to Discord without duplicating existing automation or inventing a second webhook convention.
 
 ## Acceptance criteria
 
-- Repo instructions exist and are easy to find.
-- Validation can be run from the repo root.
-- The next task queue is explicit.
+- A GitHub Actions workflow posts clean PR-open, update, merge, and close events to Discord.
+- The workflow uses the repo's chosen webhook secret name consistently.
+- The next task queue points to the next gameplay or automation slice after notification wiring.
 - Known blockers and missing external setup are documented.
-- The repo records the current state of its autonomy loop.
 
 ## Status
 
-Complete as of 2026-04-01.
+In progress as of 2026-04-01.
 
 ## Owner
 

@@ -37,8 +37,8 @@ if ($milestone -notmatch "Status") {
     throw "CURRENT_MILESTONE.md does not include a Status section."
 }
 
-if ($nextTasks -notmatch "Add a real Godot headless smoke test to CI") {
-    throw "NEXT_TASKS.md does not include the CI follow-up task."
+if ($nextTasks -notmatch "Add GitHub Actions Discord notifications") {
+    throw "NEXT_TASKS.md does not include the Discord notification follow-up task."
 }
 
 if ($issues -notmatch "Discord connector") {
