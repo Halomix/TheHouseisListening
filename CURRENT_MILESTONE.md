@@ -2,18 +2,19 @@
 
 ## Milestone
 
-Patch 9: Godot headless smoke test CI.
+Patch 10: GitHub Actions Discord notifications.
 
 ## Why this matters
 
-The project needs a repeatable runtime check on every push and PR so startup regressions, scene-load failures, and script parse errors stop earlier in the loop.
+The project needs a lightweight notification path so PR activity posts cleanly to Discord without duplicating existing automation or inventing a second webhook convention.
 
 ## Acceptance criteria
 
-- A dedicated GitHub Actions workflow boots `res://scenes/main.tscn` headlessly on push and PR.
-- The workflow uses a real Godot install and fails on startup regressions.
-- Repo docs describe the remaining manual gaps, if any, without claiming unsupported validation.
-- The next task queue points to the next gameplay slice after CI hardening.
+- A GitHub Actions workflow posts clean PR-open, update, merge, and close events to Discord.
+- The workflow uses the existing `DISCORD_WEBHOOK_URL` secret consistently.
+- The repo docs and next task queue reflect that Discord notifications are live for future PR events.
+- The next task queue points to the live verification step and then the next gameplay slice.
+- Known blockers and missing external setup are documented.
 
 ## Status
 

@@ -12,3 +12,4 @@ sandbox = "unelevated"
 # - The current snapshot does not expose a Discord connector.
 # - GitHub automation is available when the repository is connected to a
 #   real remote and PR metadata is available.
+# - GitHub Actions Discord notifications use the DISCORD_WEBHOOK_URL secret.

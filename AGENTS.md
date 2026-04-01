@@ -27,6 +27,8 @@ This repository contains the Godot horror game **The House Is Listening**.
 - Keep `CURRENT_MILESTONE.md`, `NEXT_TASKS.md`, and `KNOWN_ISSUES.md` current.
 - Use `PLAYTEST_NOTES.md` for any manual observations, even if they are brief.
 - Keep PRs small and coherent.
+- Use `DISCORD_WEBHOOK_URL` as the canonical GitHub Actions webhook secret name for Discord notifications.
+- Discord PR notifications are expected to post on future pull request events once the workflow is merged.
 
 ## Useful tools and MCPs
 
@@ -34,7 +36,7 @@ This repository contains the Godot horror game **The House Is Listening**.
 - Sentry connector: use for live issue analysis if crash or performance telemetry is available.
 - Google Drive / Docs / Sheets / Slides: useful only if design, planning, or external notes live there.
 - Notion: useful if the project adopts a planning or task database.
-- No Discord connector is currently exposed in this environment, so Discord reporting remains an external/manual step unless a webhook or app is added later.
+- No Discord connector is currently exposed in this environment, so direct Discord messaging remains external/manual even though GitHub Actions PR notifications are wired in-repo.
 
 ## Local Codex config
 
@@ -59,10 +61,5 @@ Do not leave that dependency implied.
 
 Current external handoff requirement:
 
-- Connect this local git repository to the real GitHub remote, push `codex/bootstrap-autonomy`, and open a PR.
-- Add a Discord webhook or connector if you want automated run summaries posted outside GitHub.
-
-Current PR blocker:
-
-- `gh` is installed but not authenticated in this environment, and no `GH_TOKEN` or `GITHUB_TOKEN` is available.
-- To finish PR creation, run `gh auth login` or provide a token, then create the PR from `codex/patch-8-recap-misdirection` into `main`.
+- Keep the Discord webhook secret named `DISCORD_WEBHOOK_URL` in GitHub repo settings so the PR notification workflow can post successfully.
+- If the repository ever switches webhook names, update the workflow and these instructions together.
