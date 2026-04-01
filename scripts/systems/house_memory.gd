@@ -177,6 +177,9 @@ func get_most_used_hide() -> String:
 func get_obsession_theme() -> String:
 	return obsession_theme
 
+func get_focus_label() -> String:
+	return "House focus: %s" % obsession_theme.capitalize()
+
 func get_recommended_hunt_zone() -> String:
 	if player_marked:
 		return get_safest_room()

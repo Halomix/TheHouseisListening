@@ -9,6 +9,7 @@ var power_label: Label
 var threat_label: Label
 var state_label: Label
 var presence_label: Label
+var house_focus_label: Label
 var archive_label: Label
 var note_panel: PanelContainer
 var note_title_label: Label
@@ -37,7 +38,9 @@ func _ready() -> void:
 	set_player_state("Exposed")
 	set_threat_state("Threat Calm")
 	set_presence_state("Presence Dormant")
+	set_house_focus("House focus: watching")
 	set_archive_status("Archive: empty")
+	call_deferred("_connect_house_memory")
 	call_deferred("_sync_existing_state")
 
 func _sync_existing_state() -> void:
@@ -66,6 +69,18 @@ func _sync_existing_state() -> void:
 	var archive := get_tree().get_first_node_in_group("archive_log")
 	if archive != null and archive.has_method("get_archive_status"):
 		set_archive_status(archive.get_archive_status())
+
+	_sync_house_focus()
+
+func _connect_house_memory() -> void:
+	var memory := get_tree().get_first_node_in_group("house_memory")
+	if memory != null and memory.has_signal("memory_changed") and not memory.memory_changed.is_connected(_sync_house_focus):
+		memory.memory_changed.connect(_sync_house_focus)
+
+func _sync_house_focus() -> void:
+	var memory := get_tree().get_first_node_in_group("house_memory")
+	if memory != null and memory.has_method("get_focus_label"):
+		set_house_focus(memory.get_focus_label())
 
 func show_prompt(text: String) -> void:
 	var cleaned := text.strip_edges()
@@ -102,6 +117,9 @@ func set_threat_state(text: String) -> void:
 
 func set_presence_state(text: String) -> void:
 	presence_label.text = text if text.begins_with("Presence") else "Presence %s" % text
+
+func set_house_focus(text: String) -> void:
+	house_focus_label.text = text if text.begins_with("House focus") else "House focus: %s" % text
 
 func set_archive_status(text: String) -> void:
 	archive_label.text = text if text.begins_with("Archive") else "Archive: %s" % text
@@ -208,6 +226,10 @@ func _build_top_left_stack() -> void:
 	presence_label = Label.new()
 	presence_label.add_theme_font_size_override("font_size", 15)
 	stack.add_child(presence_label)
+
+	house_focus_label = Label.new()
+	house_focus_label.add_theme_font_size_override("font_size", 15)
+	stack.add_child(house_focus_label)
 
 	archive_label = Label.new()
 	archive_label.add_theme_font_size_override("font_size", 15)

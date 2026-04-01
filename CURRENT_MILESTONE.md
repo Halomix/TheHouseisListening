@@ -2,18 +2,18 @@
 
 ## Milestone
 
-Patch 11: Archive/evidence loop.
+Patch 12: House focus and post-hunt deception.
 
 ## Why this matters
 
-The project needs a tangible evidence loop so note discovery feels like progress and the house can remember what the player has recovered.
+The project needs to surface what the house has learned so its post-hunt objectives and room focus feel like an active intelligence rather than only a hidden timer.
 
 ## Acceptance criteria
 
-- Notes recorded in the test level feed a visible archive log.
-- The HUD shows archive progress and the latest recovered note title.
-- The end screen summarizes recovered notes alongside the house recap.
-- The next task queue points to a playtest of the new evidence loop and the next gameplay slice.
+- The HUD shows the house focus alongside archive progress.
+- Soft events and hunt resolution can rewrite the objective as a deceptive lie.
+- Post-hunt and soft-event objectives reflect the rooms the house is actually focusing on.
+- The next task queue points to a playtest of the house-focus loop and the next gameplay slice.
 - Known blockers and missing external setup are documented.
 
 ## Status

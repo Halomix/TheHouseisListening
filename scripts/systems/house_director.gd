@@ -46,6 +46,7 @@ func _on_item_added(item_id: String) -> void:
 func _fire_soft_event() -> void:
 	var level := get_tree().get_first_node_in_group("test_level")
 	var memory := get_tree().get_first_node_in_group("house_memory")
+	var state := get_tree().get_first_node_in_group("game_state")
 	var tension := get_tree().get_first_node_in_group("tension_manager")
 	if level == null or memory == null or tension == null:
 		return
@@ -66,21 +67,37 @@ func _fire_soft_event() -> void:
 		event_tag = "marked"
 		if level.has_method("framed_room_event"):
 			await level.framed_room_event(safe_room)
+		if state != null and state.has_method("set_objective_deceptive"):
+			var truth := "Get clear of the %s." % safe_room.capitalize()
+			var lie: String = memory.get_objective_deception(truth) if memory.has_method("get_objective_deception") else truth
+			state.set_objective_deceptive(truth, lie)
 		tension.add_tension(3, "soft_marked")
 	elif _key_phase and current_tension >= 38 and safe_room == focus_room:
 		event_tag = "safe_breach"
 		if level.has_method("false_safe_room_event"):
 			await level.false_safe_room_event(safe_room)
+		if state != null and state.has_method("set_objective_deceptive"):
+			var truth := "The %s is not safe." % safe_room.capitalize()
+			var lie: String = memory.get_objective_deception(truth) if memory.has_method("get_objective_deception") else truth
+			state.set_objective_deceptive(truth, lie)
 		tension.add_tension(4, "soft_safe_breach")
 	elif current_tension >= 28:
 		event_tag = "obsession"
 		if level.has_method("obsession_whisper_event"):
 			await level.obsession_whisper_event(focus_room)
+		if state != null and state.has_method("set_objective_deceptive"):
+			var truth := "Return to the %s." % focus_room.capitalize()
+			var lie: String = memory.get_objective_deception(truth) if memory.has_method("get_objective_deception") else truth
+			state.set_objective_deceptive(truth, lie)
 		tension.add_tension(2, "soft_obsession")
 	else:
 		event_tag = "shift"
 		if level.has_method("soft_room_shift"):
 			await level.soft_room_shift(focus_room)
+		if state != null and state.has_method("set_objective_deceptive"):
+			var truth := "Keep moving."
+			var lie: String = memory.get_objective_deception(truth) if memory.has_method("get_objective_deception") else truth
+			state.set_objective_deceptive(truth, lie)
 		tension.add_tension(1, "soft_shift")
 
 	_last_event_tag = event_tag
