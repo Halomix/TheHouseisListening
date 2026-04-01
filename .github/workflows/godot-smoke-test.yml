@@ -1,0 +1,32 @@
+name: Godot Smoke Test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    name: Headless main-scene smoke test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Godot
+        uses: chickensoft-games/setup-godot@v2
+        with:
+          version: 4.6.1
+
+      - name: Confirm Godot version
+        run: godot --version
+
+      - name: Boot the main scene headlessly
+        run: godot --headless --path . --scene res://scenes/main.tscn --quit-after 1 --log-file ./godot-smoke-test.log
+
+      - name: Upload Godot log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: godot-smoke-test-log
+          path: godot-smoke-test.log

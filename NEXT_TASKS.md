@@ -1,15 +1,14 @@
 # Next Tasks
 
-## 1. Add a real Godot headless smoke test to CI
-
-- Goal: validate the main scene or a minimal startup path on every PR.
-- Why: this is the fastest way to catch broken scenes, resource references, or startup regressions before they reach a player.
-- Needs: a CI runner or action with a working Godot CLI.
-
-## 2. Turn Patch 9 into the next focused gameplay slice
+## 1. Turn Patch 10 into the next focused gameplay slice
 
 - Goal: more room mutation, a stronger post-hunt loop, and additional ways for the house to misdirect the player.
-- Why: Patch 8 sharpened the ending and the objective language, and the next best value is pushing that same idea deeper into the run.
+- Why: Patch 9 hardens runtime validation, so the next best value is pushing the horror loop deeper into the run itself.
+
+## 2. Watch the new Godot smoke test in CI
+
+- Goal: confirm the workflow stays green on unrelated PRs and actually fails on real startup regressions.
+- Why: a smoke test only pays off if the repo keeps paying attention to it after launch.
 
 ## 3. Add the first durable playtest note after a real run
 
