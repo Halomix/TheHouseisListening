@@ -9,6 +9,8 @@ Observed result:
 - `godot.exe --headless --path . --scene res://scenes/main.tscn --quit-after 1` launched the engine but reported only environment-level certificate/logging warnings on exit.
 - No GDScript parse errors or scene-load failures surfaced in the captured output.
 
+Patch 9 has not yet been observed in GitHub Actions from this local run.
+
 ## What to log next
 
 - Scene that was tested.

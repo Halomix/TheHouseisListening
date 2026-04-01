@@ -2,18 +2,18 @@
 
 ## Milestone
 
-Patch 8: the house lies back.
+Patch 9: Godot headless smoke test CI.
 
 ## Why this matters
 
-Patch 7 taught the house to remember. Patch 8 makes that memory visible through deceptive objectives and a richer recap, so the horror loop lands harder at the exact beats the player remembers.
+The project needs a repeatable runtime check on every push and PR so startup regressions, scene-load failures, and script parse errors stop earlier in the loop.
 
 ## Acceptance criteria
 
-- The house can misdirect the player with objective text while preserving the real objective internally.
-- The win screen recaps what the house learned.
-- The change remains small enough to review and validate honestly.
-- The next task queue still points to the next best follow-up.
+- A dedicated GitHub Actions workflow boots `res://scenes/main.tscn` headlessly on push and PR.
+- The workflow uses a real Godot install and fails on startup regressions.
+- Repo docs describe the remaining manual gaps, if any, without claiming unsupported validation.
+- The next task queue points to the next gameplay slice after CI hardening.
 
 ## Status
 
