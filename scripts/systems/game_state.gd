@@ -158,10 +158,18 @@ func win_game() -> void:
 	var memory := get_tree().get_first_node_in_group("house_memory")
 	if memory != null and memory.has_method("get_recap_lines"):
 		recap_lines = memory.get_recap_lines()
+	var archive_lines: PackedStringArray = []
+	var archive_log := get_tree().get_first_node_in_group("archive_log")
+	if archive_log != null and archive_log.has_method("get_recent_lines"):
+		archive_lines = archive_log.get_recent_lines()
 	var end_text := "You made it out.\nPrototype slice complete."
 	if not recap_lines.is_empty():
 		end_text += "\n\nThe house remembers:"
 		for line in recap_lines:
+			end_text += "\n- %s" % line
+	if not archive_lines.is_empty():
+		end_text += "\n\nRecovered notes:"
+		for line in archive_lines:
 			end_text += "\n- %s" % line
 	var hud := get_tree().get_first_node_in_group("hud")
 	if hud != null and hud.has_method("show_end_screen"):

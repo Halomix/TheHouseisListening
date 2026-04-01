@@ -2,18 +2,18 @@
 
 ## Milestone
 
-Patch 10: GitHub Actions Discord notifications.
+Patch 11: Archive/evidence loop.
 
 ## Why this matters
 
-The project needs a lightweight notification path so PR activity posts cleanly to Discord without duplicating existing automation or inventing a second webhook convention.
+The project needs a tangible evidence loop so note discovery feels like progress and the house can remember what the player has recovered.
 
 ## Acceptance criteria
 
-- A GitHub Actions workflow posts clean PR-open, update, merge, and close events to Discord.
-- The workflow uses the existing `DISCORD_WEBHOOK_URL` secret consistently.
-- The repo docs and next task queue reflect that Discord notifications are live for future PR events.
-- The next task queue points to the live verification step and then the next gameplay slice.
+- Notes recorded in the test level feed a visible archive log.
+- The HUD shows archive progress and the latest recovered note title.
+- The end screen summarizes recovered notes alongside the house recap.
+- The next task queue points to a playtest of the new evidence loop and the next gameplay slice.
 - Known blockers and missing external setup are documented.
 
 ## Status
