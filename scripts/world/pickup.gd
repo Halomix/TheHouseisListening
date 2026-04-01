@@ -19,8 +19,15 @@ func interact(_player: Node) -> void:
 	var state := get_tree().get_first_node_in_group("game_state")
 	if state != null and state.has_method("add_item"):
 		state.add_item(item_id, item_name)
-		if item_id == "house_key" and state.has_method("set_objective"):
-			state.set_objective("Hide. Something heard that.")
+		if item_id == "house_key":
+			var memory := get_tree().get_first_node_in_group("house_memory")
+			if state.has_method("set_objective_deceptive"):
+				var lie := "The hall is empty."
+				if memory != null and memory.has_method("get_objective_deception"):
+					lie = memory.get_objective_deception("Hide. Something heard that.")
+				state.set_objective_deceptive("Hide. Something heard that.", lie)
+			elif state.has_method("set_objective"):
+				state.set_objective("Hide. Something heard that.")
 		elif state.has_method("set_objective"):
 			state.set_objective("Unlock the exit.")
 

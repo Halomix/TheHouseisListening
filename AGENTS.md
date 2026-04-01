@@ -28,6 +28,7 @@ This repository contains the Godot horror game **The House Is Listening**.
 - Use `PLAYTEST_NOTES.md` for any manual observations, even if they are brief.
 - Keep PRs small and coherent.
 - Use `DISCORD_WEBHOOK_URL` as the canonical GitHub Actions webhook secret name for Discord notifications.
+- Discord PR notifications are expected to post on future pull request events once the workflow is merged.
 
 ## Useful tools and MCPs
 
@@ -35,7 +36,7 @@ This repository contains the Godot horror game **The House Is Listening**.
 - Sentry connector: use for live issue analysis if crash or performance telemetry is available.
 - Google Drive / Docs / Sheets / Slides: useful only if design, planning, or external notes live there.
 - Notion: useful if the project adopts a planning or task database.
-- No Discord connector is currently exposed in this environment, so Discord reporting remains an external/manual step unless a webhook or app is added later.
+- No Discord connector is currently exposed in this environment, so direct Discord messaging remains external/manual even though GitHub Actions PR notifications are wired in-repo.
 
 ## Local Codex config
 
