@@ -1,8 +1,8 @@
 # Next Tasks
 
-## 1. Playtest the house focus and post-hunt deception loop in a real run
+## 1. Playtest the visible room mutation loop in a real run
 
-- Goal: confirm the HUD house-focus label and deceptive objective rewrites feel like the house is actively learning, not just showing debug text.
+- Goal: confirm the room-focus mutations, HUD label, and deceptive objective rewrites feel like the house is actively tightening around the player's habits.
 - Why: the new system only matters if the player can feel the house reacting to their habits.
 - Needs: a real playtest run in Godot.
 
@@ -11,10 +11,10 @@
 - Goal: record what felt confusing, scary, or unreliable in actual play.
 - Why: the horror loop will improve faster if the next runner can read one clean summary instead of re-learning from scratch.
 
-## 3. Turn Patch 13 into the next focused gameplay slice
+## 3. Turn Patch 14 into the next focused gameplay slice
 
 - Goal: more room mutation, a stronger post-hunt loop, and additional ways for the house to misdirect the player.
-- Why: once the house-focus loop is proven, the next best value is making the house feel smarter and less predictable.
+- Why: once the mutation loop is proven, the next best value is making the house feel smarter and less predictable.
 
 ## 4. Connect branch protection and PR automation once the workflow stays stable
 

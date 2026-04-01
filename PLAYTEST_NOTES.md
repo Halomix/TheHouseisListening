@@ -2,14 +2,14 @@
 
 ## Current status
 
-Patch 12 received a headless Godot startup check on 2026-04-01.
+Patch 13 received a headless Godot startup check on 2026-04-01.
 
 Observed result:
 
-- `godot.exe --headless --path . --scene res://scenes/main.tscn --quit-after 1 --log-file .\godot-patch12-fixed.log` launched the engine and reached shutdown cleanly after the objective-deception type fix.
+- `godot.exe --headless --path . --scene res://scenes/main.tscn --quit-after 1 --log-file .\godot-patch13.log` launched the engine and reached shutdown cleanly.
 - The log only showed the familiar exit warnings on this machine: `ObjectDB instances leaked at exit` and `1 resources still in use at exit`.
 - No GDScript parse errors or scene-load failures surfaced in the captured output.
-- The new house-focus HUD and deceptive objective rewrites still need a real in-game read-through, since this run only proved the project still boots.
+- The new visible room-mutation loop still needs a real in-game read-through, since this run only proved the project still boots.
 
 Patch 10 Discord notifications should now be active on future PR events because `DISCORD_WEBHOOK_URL` already exists in the repo secret store.
 

@@ -328,6 +328,9 @@ func _resolve_active_threat() -> void:
 			await level.clear_hunt_sequence()
 		if level.has_method("post_hunt_payoff"):
 			await level.post_hunt_payoff(_survival_grade)
+		if level.has_method("mutate_focus_room"):
+			var focus_room := _current_target_zone if _current_target_zone != "" else "hall"
+			await level.mutate_focus_room(focus_room, 2 if _survival_grade != "clean" else 1)
 
 	var should_mark: bool = _survival_grade == "barely"
 	if memory != null and memory.has_method("get_hide_use_count") and memory.get_hide_use_count("linen_closet") >= 2:

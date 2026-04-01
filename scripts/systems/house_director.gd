@@ -57,6 +57,9 @@ func _fire_soft_event() -> void:
 	var safe_room: String = focus_room
 	if memory.has_method("get_safest_room"):
 		safe_room = memory.get_safest_room()
+	var focus_pressure: float = 0.0
+	if memory.has_method("get_room_pressure"):
+		focus_pressure = float(memory.get_room_pressure(focus_room))
 
 	var current_tension: float = 0.0
 	if tension.has_method("get_tension"):
@@ -67,6 +70,8 @@ func _fire_soft_event() -> void:
 		event_tag = "marked"
 		if level.has_method("framed_room_event"):
 			await level.framed_room_event(safe_room)
+		if level.has_method("mutate_focus_room"):
+			await level.mutate_focus_room(safe_room, 2)
 		if state != null and state.has_method("set_objective_deceptive"):
 			var truth := "Get clear of the %s." % safe_room.capitalize()
 			var lie: String = memory.get_objective_deception(truth) if memory.has_method("get_objective_deception") else truth
@@ -76,6 +81,8 @@ func _fire_soft_event() -> void:
 		event_tag = "safe_breach"
 		if level.has_method("false_safe_room_event"):
 			await level.false_safe_room_event(safe_room)
+		if level.has_method("mutate_focus_room"):
+			await level.mutate_focus_room(focus_room, 3)
 		if state != null and state.has_method("set_objective_deceptive"):
 			var truth := "The %s is not safe." % safe_room.capitalize()
 			var lie: String = memory.get_objective_deception(truth) if memory.has_method("get_objective_deception") else truth
@@ -85,6 +92,8 @@ func _fire_soft_event() -> void:
 		event_tag = "obsession"
 		if level.has_method("obsession_whisper_event"):
 			await level.obsession_whisper_event(focus_room)
+		if level.has_method("mutate_focus_room") and focus_pressure >= 1.8:
+			await level.mutate_focus_room(focus_room, 2)
 		if state != null and state.has_method("set_objective_deceptive"):
 			var truth := "Return to the %s." % focus_room.capitalize()
 			var lie: String = memory.get_objective_deception(truth) if memory.has_method("get_objective_deception") else truth
@@ -94,6 +103,8 @@ func _fire_soft_event() -> void:
 		event_tag = "shift"
 		if level.has_method("soft_room_shift"):
 			await level.soft_room_shift(focus_room)
+		if level.has_method("mutate_focus_room"):
+			await level.mutate_focus_room(focus_room, 1)
 		if state != null and state.has_method("set_objective_deceptive"):
 			var truth := "Keep moving."
 			var lie: String = memory.get_objective_deception(truth) if memory.has_method("get_objective_deception") else truth

@@ -94,6 +94,20 @@ func key_pickup_event() -> void:
 		await _flicker_light(kitchen_light)
 	await presence_glimpse_at(kitchen_marker)
 
+func mutate_focus_room(room_name: String, intensity: int = 1) -> void:
+	var marker := _marker_for_room(room_name)
+	var light := _light_for_room(room_name)
+	var label := room_name.strip_edges().to_lower()
+	if label.is_empty():
+		label = "hall"
+	_flash_message("The house tightens around the %s." % label, 1.5 + float(min(intensity, 3)) * 0.15)
+	if light != null and light.visible:
+		var pulses := clampi(intensity, 1, 3) + 1
+		for _i in range(pulses):
+			await _flicker_light(light)
+	if marker != null:
+		await presence_glimpse_at(marker, 0.14 + float(min(intensity, 3)) * 0.03)
+
 func pre_hunt_presence() -> void:
 	_flash_message("Something stands between you and the front hall.", 1.6)
 	await get_tree().create_timer(0.12).timeout
