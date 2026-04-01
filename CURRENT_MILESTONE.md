@@ -2,18 +2,18 @@
 
 ## Milestone
 
-Patch 12: House focus and post-hunt deception.
+Patch 13: Visible room mutation.
 
 ## Why this matters
 
-The project needs to surface what the house has learned so its post-hunt objectives and room focus feel like an active intelligence rather than only a hidden timer.
+The project needs the house to visibly tighten around the rooms it has learned so the player feels its pressure as architecture, not only as text.
 
 ## Acceptance criteria
 
-- The HUD shows the house focus alongside archive progress.
-- Soft events and hunt resolution can rewrite the objective as a deceptive lie.
-- Post-hunt and soft-event objectives reflect the rooms the house is actually focusing on.
-- The next task queue points to a playtest of the house-focus loop and the next gameplay slice.
+- Soft events and hunt resolution visibly mutate the rooms the house has focused on.
+- The mutation reads as a consequence of player habits, not a random scare.
+- The house-focus HUD remains intact and still reflects the learned room.
+- The next task queue points to a playtest of the mutation loop and the next gameplay slice.
 - Known blockers and missing external setup are documented.
 
 ## Status
