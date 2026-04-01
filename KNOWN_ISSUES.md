@@ -9,6 +9,7 @@
 
 - Full Godot headless validation is not yet wired to a guaranteed CI runner in this repo.
 - The bootstrap workflow currently validates repository continuity files and local scripts, but it is not a substitute for a real scene-load smoke test.
+- Patch 8 needs a real Godot launch check once the gameplay slice is finalized.
 
 ## Ownership metadata
 

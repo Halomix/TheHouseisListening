@@ -2,23 +2,22 @@
 
 ## Milestone
 
-Bootstrap the repository for unattended Codex execution.
+Patch 8: the house lies back.
 
 ## Why this matters
 
-The project needs durable instructions, validation, and next-step memory so each wake-up can continue without rediscovering the same context.
+Patch 7 taught the house to remember. Patch 8 makes that memory visible through deceptive objectives and a richer recap, so the horror loop lands harder at the exact beats the player remembers.
 
 ## Acceptance criteria
 
-- Repo instructions exist and are easy to find.
-- Validation can be run from the repo root.
-- The next task queue is explicit.
-- Known blockers and missing external setup are documented.
-- The repo records the current state of its autonomy loop.
+- The house can misdirect the player with objective text while preserving the real objective internally.
+- The win screen recaps what the house learned.
+- The change remains small enough to review and validate honestly.
+- The next task queue still points to the next best follow-up.
 
 ## Status
 
-Complete as of 2026-04-01.
+In progress as of 2026-04-01.
 
 ## Owner
 
